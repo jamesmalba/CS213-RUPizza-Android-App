@@ -1,5 +1,6 @@
 package com.example.cs213_pizzaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -17,60 +18,79 @@ import com.example.cs213_pizzaapp.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageButton;
 
+/**
+ *
+ * @author Alexis Wilson, James Alba
+ */
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
+    private Button currentOrderButton, storeOrdersButton, orderPizzaButton;
+
+    private int uniqueOrderNumber = 1;
+    protected static StoreOrder storeOrders = new StoreOrder();
+    protected static Order totalOrder = new Order();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        orderPizzaButton = findViewById(R.id.MainOrderPizzaButton);
+        currentOrderButton = findViewById(R.id.MainCurrentOrderButton);
+        storeOrdersButton = findViewById(R.id.MainStoreOrderButton);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
+        // Add on click listener for order donut button
+        orderPizzaButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                launchOrderPizza();
+            }
+        });
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        // Add on click listener for current order button
+        currentOrderButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                launchCurrentOrder();
+            }
+        });
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        // Add on click listener for store orders button
+        storeOrdersButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                launchStoreOrders();
             }
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    /**
+     * Method to launch ordering pizza screen
+     * @param view current view of the image button
+     */
+    public void launchOrderPizzaRecycleView(View view) {
+        Intent openOrderPizza = new Intent(MainActivity.this, OrderPizzaRecycleViewActivity.class);
+        startActivity(openOrderPizza);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    /**
+     * Method to launch current order screen
+     */
+    void launchCurrentOrder() {
+        Intent openCurrentOrders = new Intent(MainActivity.this, CurrentOrderActivity.class);
+        startActivity(openCurrentOrders);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+    /**
+     * Method to launch the store orders screen
+     */
+    void launchStoreOrders() {
+        Intent openStoreOrders = new Intent(MainActivity.this, StoreOrdersActivity.class);
+        startActivity(openStoreOrders);
     }
+
+
 }

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * StoreOrder class contains all the information needed to handle store orders containing an observable list of order
@@ -13,13 +14,14 @@ import java.io.IOException;
  * @author Alexis Wilson, James Alba
  */
 public class StoreOrder implements Customizable {
-    private final ObservableList<Order> orderList;
+    private final ArrayList<Order> orderList;
+    private static StoreOrder instance = null;
 
     /**
      * Constructor to create an order object list containing an observable list for all the orders.
      */
     public StoreOrder() {
-        orderList = FXCollections.observableArrayList();
+        orderList = new ArrayList<>();
     }
 
     /**
@@ -53,7 +55,7 @@ public class StoreOrder implements Customizable {
      * Method that returns an observable list containing the list of all the orders in the current store order.
      * @return Observable list of orders containing all the orders in the current store order.
      */
-    public ObservableList<Order> getStoreOrderList() {
+    public ArrayList<Order> getStoreOrderList() {
         return this.orderList;
     }
 
@@ -104,5 +106,10 @@ public class StoreOrder implements Customizable {
      */
     public int getSize() {
         return orderList.size();
+    }
+
+    public static StoreOrder getInstance() {
+        if(instance == null) instance = new StoreOrder();
+        return instance;
     }
 }

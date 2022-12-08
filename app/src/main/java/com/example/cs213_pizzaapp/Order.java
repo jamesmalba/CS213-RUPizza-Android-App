@@ -1,7 +1,9 @@
 package com.example.cs213_pizzaapp;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import static com.google.android.material.animation.ArgbEvaluatorCompat.instance;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Order class contains all the information needed to handle orders containing the pizza classes and the functions
@@ -12,14 +14,16 @@ public class Order implements Customizable {
 
     public static final double SALES_TAX = 0.06625;
 
-    private ObservableList<Pizza> orderListView;
+    private ArrayList<Pizza> orderListView;
 
     private int orderNumber;
+
+    private static Order instance;
 
     /**
      * Constructor to create a pizza object containing an observable list for all the pizzas.
      */
-    public Order() { orderListView = FXCollections.observableArrayList();}
+    public Order() { orderListView = new ArrayList<>();}
 
     /**
      * Adds a pizza to the order list.
@@ -63,7 +67,7 @@ public class Order implements Customizable {
      * Method that returns an observable list containing the list of all the pizzas in the current order.
      * @return Observable list of pizza containing all the pizzas in the current order.
      */
-    public ObservableList<Pizza> getOrder() {
+    public ArrayList<Pizza> getOrder() {
         return orderListView;
     }
 
@@ -100,7 +104,18 @@ public class Order implements Customizable {
      * A getter method for the order list of pizzas for the specific order object.
      * @return Observable list representing all the pizzas contained in the order.
      */
-    public ObservableList<Pizza> getOrderList() {
+    public ArrayList<Pizza> getOrderList() {
         return this.orderListView;
     }
+
+    public static Order getInstance() {
+        if(instance == null) instance = new Order();
+        return instance;
+    }
+
+    public void addToStoreOrders(double price) {
+        StoreOrder.getInstance().add(this);
+        instance = null;
+    }
+
 }

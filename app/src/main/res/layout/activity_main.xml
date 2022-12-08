@@ -7,22 +7,25 @@
     android:background="#877676">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/MainCurrentOrderButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="launchCurrentOrders"
         android:text="Current Order"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/MainStoreOrderButton"
         app:layout_constraintHorizontal_bias="0.661"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="585dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/MainStoreOrderButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="52dp"
+        android:onClick="launchStoreOrders"
         android:text="Store Orders"
+        android:textColorHighlight="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -42,7 +45,7 @@
         android:id="@+id/textView4"
         android:layout_width="188dp"
         android:layout_height="39dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="68dp"
         android:text="Order Pizza Here"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -67,4 +70,13 @@
         app:srcCompat="@drawable/store_orders"
         tools:layout_editor_absoluteX="228dp"
         tools:layout_editor_absoluteY="445dp" />
+
+    <ImageView
+        android:id="@+id/MainOrderPizzaImage"
+        android:layout_width="217dp"
+        android:layout_height="173dp"
+        android:onClick="launchOrderPizza"
+        app:srcCompat="@drawable/ic_launcher_foreground"
+        tools:layout_editor_absoluteX="97dp"
+        tools:layout_editor_absoluteY="217dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

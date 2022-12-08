@@ -9,4 +9,14 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string-array name="itemNames">
+        <item>NY Build Your Own Pizza</item>
+        <item>NY BBQ Pizza</item>
+        <item>NY Deluxe Pizza</item>
+        <item>NY Meatzza Pizza</item>
+        <item>Chicago Build Your Own Pizza</item>
+        <item>Chicago BBQ Pizza</item>
+        <item>Chicago Deluxe Pizza</item>
+        <item>Chicago Meatzza Pizza</item>
+    </string-array>
 </resources>
