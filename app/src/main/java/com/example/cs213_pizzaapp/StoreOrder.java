@@ -1,7 +1,5 @@
 package com.example.cs213_pizzaapp;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,8 +29,8 @@ public class StoreOrder implements Customizable {
      */
     @Override
     public boolean add(Object obj) {
-        if (obj instanceof Order order) {
-            orderList.add(order);
+        if (obj instanceof Order) {
+            orderList.add((Order) obj);
             return true;
         }
         return false;
@@ -44,8 +42,8 @@ public class StoreOrder implements Customizable {
      * @return returns true if order removed. Otherwise, returns false.
      */
     public boolean remove(Object obj) {
-        if (obj instanceof Order order) {
-            orderList.remove(order);
+        if (obj instanceof Order) {
+            orderList.remove(obj);
             return true;
         }
         return false;

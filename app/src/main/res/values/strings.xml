@@ -19,4 +19,45 @@
         <item>Chicago Deluxe Pizza</item>
         <item>Chicago Meatzza Pizza</item>
     </string-array>
+    <string name="ordering">Ordering </string>
+    <string name="handTossed">Hand Tossed</string>
+    <string name="pan">Pan</string>
+    <string name="brooklyn">Brooklyn</string>
+    <string name="deepDish">Deep Dish</string>
+    <string name="thin">Thin</string>
+    <string name="stuffed">Stuffed</string>
+    <string name="order_successfully_added">Order Successfully Added</string>
+    <string name="too_many_toppings">Cannot have more than 7 toppings! You will not be able to add order.</string>
+    <string name="main_title">RU Pizza</string>
+    <string name="main_order_title">Order Pizza Here</string>
+    <string name="main_order_pizza_button">Order Pizza</string>
+    <string name="main_current_order">Current Order</string>
+    <string name="main_store_orders">Store Orders</string>
+    <string name="current_order_title">Current Pizza Order</string>
+    <string name="current_order_subtotal">Subtotal</string>
+    <string name="current_order_salestax">Sales Tax</string>
+    <string name="current_order_total">Total</string>
+    <string name="current_order_place">Place Order</string>
+    <string name="order_sausage">Sausage</string>
+    <string name="order_pepperoni">Pepperoni</string>
+    <string name="order_green">Green Pepper</string>
+    <string name="order_onion">Onion</string>
+    <string name="order_mushroom">Mushroom</string>
+    <string name="order_BBQ">BBQ Chicken</string>
+    <string name="order_provolone">Provolone</string>
+    <string name="order_cheddar">Cheddar</string>
+    <string name="order_beef">Beef</string>
+    <string name="order_black">Black Olives</string>
+    <string name="order_pineapple">Pineapple</string>
+    <string name="order_spinach">Spinach</string>
+    <string name="order_bacon">Bacon</string>
+    <string name="order_Ham">Ham</string>
+    <string name="order_price">Pizza Price:</string>
+    <string name="order_place">Place Order</string>
+    <string name="order_toppings">Toppings:</string>
+    <string name="order_size">Size:</string>
+    <string name="order_crust">Crust:</string>
+    <string name="order_crust_name">Crust name</string>
+    <string name="store_order_remove">Remove Order</string>
+    <string name="store_order_title">Store Pizza Orders</string>
 </resources>
