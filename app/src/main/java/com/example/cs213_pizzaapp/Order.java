@@ -1,8 +1,4 @@
 package com.example.cs213_pizzaapp;
-
-import static com.google.android.material.animation.ArgbEvaluatorCompat.instance;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -47,8 +43,8 @@ public class Order implements Customizable {
      */
     @Override
     public boolean remove(Object obj) {
-        if (obj instanceof Pizza item) {
-            orderListView.remove(item);
+        if (obj instanceof Pizza) {
+            orderListView.remove(obj);
             return true;
         }
         return false;

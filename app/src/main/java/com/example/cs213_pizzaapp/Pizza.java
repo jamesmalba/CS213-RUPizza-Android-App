@@ -69,8 +69,8 @@ public abstract class Pizza implements Customizable {
      * @return returns true if topping added. Otherwise, returns false.
      */
     public boolean add(Object obj) {
-        if (obj instanceof Topping addedTop) {
-            toppings.add(addedTop);
+        if (obj instanceof Topping) {
+            toppings.add((Topping) obj);
             return true;
         }
         return false;
@@ -82,8 +82,8 @@ public abstract class Pizza implements Customizable {
      * @return returns true if topping removed. Otherwise, returns false.
      */
     public boolean remove(Object obj) {
-        if (obj instanceof Topping removedTop) {
-            toppings.remove(removedTop);
+        if (obj instanceof Topping) {
+            toppings.remove(obj);
             return true;
         }
         return false;

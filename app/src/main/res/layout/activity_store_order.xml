@@ -9,7 +9,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Store Pizza Orders"
+        android:text="@string/store_order_title"
         android:textColor="#050505"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/_dynamic"
@@ -26,10 +26,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/store_remove_order_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remove Order"
+        android:text="@string/store_order_remove"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
