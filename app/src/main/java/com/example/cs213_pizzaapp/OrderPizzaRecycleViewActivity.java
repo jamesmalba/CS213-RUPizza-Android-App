@@ -29,8 +29,8 @@ public class OrderPizzaRecycleViewActivity extends AppCompatActivity {
         RecyclerView rcview = findViewById(R.id.rcView_menu);
         setupMenuItems();
         ItemsAdapter adapter = new ItemsAdapter(this, items); //create the adapter
-        rcview.setAdapter(adapter); //bind the list of items to the RecyclerView
-        //use the LinearLayout for the RecyclerView
+        rcview.setAdapter(adapter);
+
         rcview.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -42,11 +42,6 @@ public class OrderPizzaRecycleViewActivity extends AppCompatActivity {
         for (int i = 0; i < itemNames.length; i++) {
             items.add(new Item(itemNames[i], itemImages[i]));
         }
-    }
-
-    public void orderBYO(View view) {
-        Intent openOrderPizza = new Intent(MainActivity.this, OrderPizzaActivity.class);
-        startActivity(openOrderPizza);
     }
 
 }

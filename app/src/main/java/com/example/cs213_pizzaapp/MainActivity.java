@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         // Add on click listener for order donut button
         orderPizzaButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                launchOrderPizza();
+                launchOrderPizzaRecycleView(v);
             }
         });
 

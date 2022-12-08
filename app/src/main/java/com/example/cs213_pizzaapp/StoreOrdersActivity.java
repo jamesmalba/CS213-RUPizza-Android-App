@@ -32,12 +32,11 @@ public class StoreOrdersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.); //STORE ORDERS ACTIVITY NAME
+        setContentView(R.layout.activity_store_order); //STORE ORDERS ACTIVITY NAME
         currentSelectedOrder = null;
-        storeOrdersListView = (ListView) findViewById(R.id.); //STORE ORDERS LIST VIEW ID
-        removeSelectedPizzaOrder = (Button) findViewById(R.id.); //REMOVE ORDER BUTTON ID
+        storeOrdersListView = (ListView) findViewById(R.id.store_order_orderlistview); //STORE ORDERS LIST VIEW ID
+        removeSelectedPizzaOrder = (Button) findViewById(R.id.store_remove_order_button); //REMOVE ORDER BUTTON ID
         storeOrdersListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        storeOrdersListView.setSelector(R.color.);
     }
 
     /**
@@ -46,10 +45,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
         buildOrderList();
-
 
         removeSelectedPizzaOrder.setEnabled(false);
 
@@ -85,10 +81,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
         currentSelectedOrder = null;
         buildOrderList();
 
-        // Show toast
-        Toast.makeText(getBaseContext(), R.string.successfully_removed_order, Toast.LENGTH_SHORT).show();
-
-        // Disable remove selected order button
+        Toast.makeText(getBaseContext(), R.string.removed_order_success, Toast.LENGTH_SHORT).show();
         removeSelectedPizzaOrder.setEnabled(false);
     }
 
@@ -96,21 +89,17 @@ public class StoreOrdersActivity extends AppCompatActivity {
     private void buildOrderList() {
         ArrayList<Order> orders = StoreOrder.getInstance().getStoreOrderList();
         ArrayList<String> parsedOrderContentItems = new ArrayList<>();
-        // Build a card for each order
         for(Order order : orders) {
             String orderTitle = order.toString() + "\n";
 
-            // Add each menu item to the string
             String pizzas = "";
             for(Pizza item : order.getOrderList()) {
                 pizzas += item.toString() + "\n";
             }
 
-            // Build new card
             parsedOrderContentItems.add(orderTitle + pizzas);
         }
 
-        // set list view content
         storeOrdersListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, parsedOrderContentItems));
     }
 

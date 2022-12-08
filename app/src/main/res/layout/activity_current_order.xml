@@ -16,15 +16,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <ListView
+        android:id="@+id/current_order_listviews"
         android:layout_width="314dp"
         android:layout_height="303dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.439" />
 
     <EditText
         android:id="@+id/editTextNumberDecimal"
@@ -37,45 +40,69 @@
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editTextNumberDecimal2"
         android:layout_width="218dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="28dp"
         android:ems="10"
         android:hint="@string/current_order_salestax"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextNumberDecimal3"
         android:layout_width="218dp"
         android:layout_height="48dp"
-        android:layout_marginTop="504dp"
+        android:layout_marginTop="492dp"
         android:ems="10"
         android:hint="@string/current_order_total"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="212dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="28dp"
+        android:id="@+id/current_place_order_button"
+        android:layout_width="166dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/current_order_place"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/current_removesel_button"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="136dp"
+        android:text="@string/current_removesel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/current_clear_order"
+        android:layout_width="146dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/current_clear_order_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/current_place_order_button"
+        app:layout_constraintHorizontal_bias="0.808"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

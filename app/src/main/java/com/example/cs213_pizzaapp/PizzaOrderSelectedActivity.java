@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,7 +24,8 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
 
     private ImageView pizzaImage;
     private Button addPizzaToOrderButton;
-    private TextView pizzaCrust, selectedPizzaType, pizzaPrice;
+    private EditText pizzaPrice;
+    private TextView pizzaCrust, selectedPizzaType;
     private CheckBox sausageCheckbox, pepperoniCheckbox, greenPepperCheckbox, onionCheckbox,
             mushroomCheckbox, bbqChickenCheckbox, provoloneCheckbox, cheddarCheckbox, beefCheckbox,
             pineappleCheckbox, blackOlivesCheckbox, spinachCheckbox, baconCheckbox, hamCheckbox;
@@ -294,7 +296,7 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
      */
     private void assignReferences() {
         //FILL ALL ITEM IDS HERE
-        pizzaPrice = (TextView) findViewById(R.id.pizza_price_textview);
+        pizzaPrice = (EditText) findViewById(R.id.pizza_price_textview);
         addPizzaToOrderButton = (Button) findViewById(R.id.place_order_button);
         selectedPizzaType = (TextView) findViewById(R.id.pizza_order_textview);
         pizzaCrust = (TextView) findViewById(R.id.pizza_crust_textview);
