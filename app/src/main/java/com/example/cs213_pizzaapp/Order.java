@@ -32,7 +32,8 @@ public class Order implements Customizable {
      */
     @Override
     public boolean add(Object obj) {
-        if (obj instanceof Pizza item) {
+        if (obj instanceof Pizza) {
+            Pizza item = (Pizza)obj;
             orderListView.add(item);
             return true;
         }
