@@ -67,37 +67,56 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity {
 
     private void nyBBQSelected() {
         presetSelected();
-
+        bbqPreset();
 
     }
 
     private void nyDeluxeSelected() {
         presetSelected();
+        deluxePreset();
 
-        sausageCheckbox.setClickable(true);
     }
 
     private void nyMeatzzaSelected() {
         presetSelected();
-
-        sausageCheckbox.setClickable(true);
+        meatzzaPreset();
     }
 
     private void chicagoBBQSelected() {
         presetSelected();
-
-        sausageCheckbox.setClickable(true);
+        bbqPreset();
     }
 
     private void chicagoDeluxeSelected() {
         presetSelected();
-
-        sausageCheckbox.setClickable(true);
+        deluxePreset();
     }
 
     private void chicagoMeatzzaSelected() {
         presetSelected();
+        meatzzaPreset();
+    }
+
+    private void bbqPreset() {
+        bbqChickenCheckbox.setSelected(true);
+        greenPepperCheckbox.setSelected(true);
+        provoloneCheckbox.setSelected(true);
+        cheddarCheckbox.setSelected(true);
+    }
+
+    private void deluxePreset() {
         sausageCheckbox.setSelected(true);
+        pepperoniCheckbox.setSelected(true);
+        greenPepperCheckbox.setSelected(true);
+        onionCheckbox.setSelected(true);
+        mushroomCheckbox.setSelected(true);
+    }
+
+    private void meatzzaPreset() {
+        sausageCheckbox.setSelected(true);
+        pepperoniCheckbox.setSelected(true);
+        beefCheckbox.setSelected(true);
+        hamCheckbox.setSelected(true);
     }
 
     /**

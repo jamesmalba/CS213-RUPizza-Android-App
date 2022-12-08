@@ -1,7 +1,8 @@
 package com.example.cs213_pizzaapp;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 /**
  * Topping class stores all 13 toppings offered at RUPizza, as well as functions to return as a string or get all Toppings.
@@ -27,8 +28,8 @@ public enum Topping {
      * Returns all Toppings of the class in an Observable String arraylist
      * @return observable list containing all toppings as strings
      */
-    public ObservableList getAllToppings() {
-        ObservableList<String> items = FXCollections.observableArrayList ();
+    public ArrayList getAllToppings() {
+        ArrayList<String> items = new ArrayList<>();
         for(Topping i : Topping.values()) {
             items.add(i.toString());
         }
