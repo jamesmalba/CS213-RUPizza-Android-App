@@ -80,30 +80,87 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
+        checkBoxListener();
+        checkBoxListenerTwo();
         addPizzaToOrderButton.setOnClickListener(this::addToOrder);
         updatePriceOutput();
     }
 
-    public void checkBoxListener() {
-        boolean isChecked = ((CheckBox)v).isChecked();
-        if (sausageCheckbox.equals(v)) addPizzaTopping(Topping.SAUSAGE, isChecked);
-        if (pepperoniCheckbox.equals(v)) addPizzaTopping(Topping.PEPPERONI, isChecked);
-        if (greenPepperCheckbox.equals(v)) addPizzaTopping(Topping.GREEN_PEPPER, isChecked);
-        if (onionCheckbox.equals(v)) addPizzaTopping(Topping.ONION, isChecked);
-        if (mushroomCheckbox.equals(v)) addPizzaTopping(Topping.MUSHROOM, isChecked);
-        if (bbqChickenCheckbox.equals(v)) addPizzaTopping(Topping.BBQ_CHICKEN, isChecked);
-        if (provoloneCheckbox.equals(v)) addPizzaTopping(Topping.PROVOLONE, isChecked);
-        if (cheddarCheckbox.equals(v)) addPizzaTopping(Topping.CHEDDAR, isChecked);
-        if (beefCheckbox.equals(v)) addPizzaTopping(Topping.BEEF, isChecked);
-        if (blackOlivesCheckbox.equals(v)) addPizzaTopping(Topping.BLACKOLIVES, isChecked);
-        if (pineappleCheckbox.equals(v)) addPizzaTopping(Topping.PINEAPPLE, isChecked);
-        if (spinachCheckbox.equals(v)) addPizzaTopping(Topping.SPINACH, isChecked);
-        if (baconCheckbox.equals(v)) addPizzaTopping(Topping.BACON, isChecked);
-        if (hamCheckbox.equals(v)) addPizzaTopping(Topping.HAM, isChecked);
-        updatePriceOutput();
+    private void checkBoxListener() {
+        sausageCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.SAUSAGE, isChecked);
+            updatePriceOutput();
+        });
+        greenPepperCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.GREEN_PEPPER, isChecked);
+            updatePriceOutput();
+        });
+        pepperoniCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.PEPPERONI, isChecked);
+            updatePriceOutput();
+        });
+        onionCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.ONION, isChecked);
+            updatePriceOutput();
+        });
+        mushroomCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.MUSHROOM, isChecked);
+            updatePriceOutput();
+        });
+        bbqChickenCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.BBQ_CHICKEN, isChecked);
+            updatePriceOutput();
+        });
+        provoloneCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.PROVOLONE, isChecked);
+            updatePriceOutput();
+        });
     }
 
+    private void checkBoxListenerTwo() {
+        beefCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.BEEF, isChecked);
+            updatePriceOutput();
+        });
+        blackOlivesCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.BLACKOLIVES, isChecked);
+            updatePriceOutput();
+        });
+        pineappleCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.PINEAPPLE, isChecked);
+            updatePriceOutput();
+        });
+        spinachCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.SPINACH, isChecked);
+            updatePriceOutput();
+        });
+        baconCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.BACON, isChecked);
+            updatePriceOutput();
+        });
+        hamCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.HAM, isChecked);
+            updatePriceOutput();
+        });
+        cheddarCheckbox.setOnClickListener(view -> {
+            boolean isChecked = ((CheckBox)view).isChecked();
+            addPizzaTopping(Topping.CHEDDAR, isChecked);
+            updatePriceOutput();
+        });
+    }
 
 
     /**
@@ -148,7 +205,7 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
 
     private void addPizzaTopping(Topping topping, boolean isCheck) {
         if(isCheck) {
-            if (pizza.getToppings().size() > 7) {
+            if (pizza.getToppings().size() == 7) {
                 Toast.makeText(getBaseContext(), R.string.too_many_toppings, Toast.LENGTH_LONG).show();
                 addPizzaToOrderButton.setEnabled(false);
             } else {
