@@ -20,7 +20,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- *
+ * Pizza Order Selected Activity. This activity takes care of adding the pizza of choice to the order.
  * @author Alexis Wilson, James Alba
  */
 public class PizzaOrderSelectedActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
