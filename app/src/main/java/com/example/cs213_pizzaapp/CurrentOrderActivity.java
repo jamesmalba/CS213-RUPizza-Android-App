@@ -1,7 +1,5 @@
 package com.example.cs213_pizzaapp;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,17 +7,13 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Observable;
 
 /**
  * CurrentOrderActivity. This will list all the info for the current order, and you can remove
@@ -29,11 +23,11 @@ import java.util.Observable;
 public class CurrentOrderActivity extends AppCompatActivity {
 
     private ListView orderListView;
-    private TextInputEditText total, subtotal, tax;
+    private EditText total, subtotal, tax;
     private Order currentOrder;
-    private StoreOrder storeOrders = MainActivity.storeOrders;
+    private StoreOrder storeOrders;
     private Pizza currentlySelectedPizza;
-    private Button removeSelectedPizza, placePizzaOrder;
+    private Button removeSelectedPizza, placePizzaOrder, clearPizzaOrder;
 
     public static final double SALES_TAX = 0.06625;
     public static final double SALES_TAX_MULTIPLIER = 1.06625;
@@ -41,24 +35,25 @@ public class CurrentOrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.); //CURRENT ORDER ACTIVITY HERE!!!!!!!!!!!!!!!!
-        this.setTitle(R.string.); //TITLE HERE
-
+        setContentView(R.layout.activity_current_order);
+        storeOrders = StoreOrder.getInstance();
         currentlySelectedPizza = null;
         currentOrder = Order.getInstance();
 
-        orderListView = findViewById(R.id.); //IDNAME FOR LIST VIEW HERE
-        orderListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        orderListView.setSelector(R.color.);
 
-        //SETTING COST INFORMATION
-        tax = findViewById(R.id.salestax);
-        subtotal = findViewById(R.id.subtotal);
-        total = findViewById(R.id.total);
+        orderListView = findViewById(R.id.current_order_listviews);
+        clearPizzaOrder = findViewById(R.id.current_clear_order);
+        orderListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+
+
+        tax = findViewById(R.id.editTextNumberDecimal2);
+        placePizzaOrder = findViewById(R.id.current_place_order_button);
+        subtotal = findViewById(R.id.editTextNumberDecimal);
+        total = findViewById(R.id.editTextNumberDecimal3);
         tax.setEnabled(false);
         subtotal.setEnabled(false);
         total.setEnabled(false);
-        removeSelectedPizza = findViewById(R.is.); //ID FOR REMOVE PIZZA HERE
+        removeSelectedPizza = findViewById(R.id.current_removesel_button);
     }
 
     @Override
@@ -74,23 +69,21 @@ public class CurrentOrderActivity extends AppCompatActivity {
         });
 
         removeSelectedPizza.setOnClickListener(v -> { this.removePizza(); });
-
+        clearPizzaOrder.setOnClickListener(v -> { this.clearOrder(); });
         placePizzaOrder.setOnClickListener(v -> { this.placeOrder(); });
 
-        // Update UI and recompute price
         this.updateInfo();
         this.calculatePrices();
     }
 
 
     public void placeOrder() {
-        // finalize the store order, which adds it to StoreOrders
-        currentOrder.addToStoreOrders(this.total);
+        Order addOrder = currentOrder;
+        addOrder.addToStoreOrders(currentOrder.orderTotalPrice());
+        currentOrder = new Order();
 
-        // Show toast
-        Toast.makeText(getBaseContext(), R.string.successfully_placed_order, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), R.string.order_successfully_added, Toast.LENGTH_SHORT).show();
 
-        // Navigate back
         Intent gotoMainActivity = new Intent(this, MainActivity.class);
         startActivity(gotoMainActivity);
     }

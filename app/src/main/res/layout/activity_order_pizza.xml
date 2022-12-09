@@ -2,9 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pizza_price_textview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/pizza_price_textview"
+        android:layout_width="125dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="@string/current_order_total"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
 
     <CheckBox
         android:id="@+id/mushroom_topping_checkbox"
@@ -148,6 +164,7 @@
         android:id="@+id/sausage_topping_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:checked="false"
         android:text="@string/order_sausage"
         app:layout_constraintBottom_toTopOf="@+id/onion_topping_checkbox"
         app:layout_constraintEnd_toEndOf="parent"
@@ -221,7 +238,12 @@
         android:layout_width="166dp"
         android:layout_height="47dp"
         android:layout_marginTop="12dp"
+        android:clickable="false"
+        android:cursorVisible="true"
+        android:editable="false"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:inputType="textPersonName"
         android:text="@string/order_crust_name"
         app:layout_constraintEnd_toEndOf="parent"
@@ -271,8 +293,8 @@
 
     <Button
         android:id="@+id/place_order_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="127dp"
+        android:layout_height="54dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/order_place"
@@ -290,15 +312,5 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        tools:layout_editor_absoluteY="688dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

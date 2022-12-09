@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CS213-PizzaApp</string>
+    <string name="app_name">RU Pizza</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -60,4 +60,7 @@
     <string name="order_crust_name">Crust name</string>
     <string name="store_order_remove">Remove Order</string>
     <string name="store_order_title">Store Pizza Orders</string>
+    <string name="current_removesel">Remove Selected Pizza</string>
+    <string name="current_clear_order_button">Clear Order</string>
+    <string name="removed_order_success">Successfully removed order.</string>
 </resources>

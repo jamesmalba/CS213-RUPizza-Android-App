@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,46 +16,48 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  *
  * @author Alexis Wilson, James Alba
  */
-public class PizzaOrderSelectedActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class PizzaOrderSelectedActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private ImageView pizzaImage;
     private Button addPizzaToOrderButton;
-    private TextView pizzaCrust, selectedPizzaType, pizzaPrice;
+    private EditText pizzaPrice;
+    private TextView pizzaCrust, selectedPizzaType;
     private CheckBox sausageCheckbox, pepperoniCheckbox, greenPepperCheckbox, onionCheckbox,
             mushroomCheckbox, bbqChickenCheckbox, provoloneCheckbox, cheddarCheckbox, beefCheckbox,
             pineappleCheckbox, blackOlivesCheckbox, spinachCheckbox, baconCheckbox, hamCheckbox;
     private Spinner pizzaSizeSpinner;
     private Pizza pizza;
-    private PizzaFactory pizzaFactory = new NYPizza();
+    private PizzaFactory pizzaFactory;
     public static final String[] PIZZA_SIZE_SPINNER_VALUES = new String[]{"SMALL", "MEDIUM", "LARGE"};
+    private ArrayList<String> toppingList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_order_pizza); //CHOOSE PIZZA ACTIVITY HERE
-        assignReferences(); //sets references for all view components
+        setContentView(R.layout.activity_order_pizza);
+        assignReferences();
 
 
         Intent intent = getIntent();
         pizzaSizeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, PIZZA_SIZE_SPINNER_VALUES));
 
         selectedPizzaType.setText(intent.getStringExtra("ITEM"));
-
-        switch(intent.getStringExtra("ITEM")) {
-            case "NY Build Your Own Pizza": nyBYOSelected();
-            case "NY BBQ Pizza": nyBBQSelected();
-            case "NY Deluxe Pizza": nyDeluxeSelected();
-            case "NY Meatzza Pizza": nyMeatzzaSelected();
-            case "Chicago Build Your Own Pizza": chicagoBYOSelected();
-            case "Chicago BBQ Pizza": chicagoBBQSelected();
-            case "Chicago Deluxe Pizza": chicagoDeluxeSelected();
-            case "Chicago Meatzza Pizza": chicagoMeatzzaSelected();
-        }
+        if (intent.getStringExtra("ITEM").equals("NY Build Your Own Pizza"))nyBYOSelected();
+        if (intent.getStringExtra("ITEM").equals("NY BBQ Pizza")) nyBBQSelected();
+        if (intent.getStringExtra("ITEM").equals("NY Deluxe Pizza")) nyDeluxeSelected();
+        if (intent.getStringExtra("ITEM").equals("NY Meatzza Pizza")) nyMeatzzaSelected();
+        if (intent.getStringExtra("ITEM").equals("Chicago Build Your Own Pizza")) chicagoBYOSelected();
+        if (intent.getStringExtra("ITEM").equals("Chicago BBQ Pizza")) chicagoBBQSelected();
+        if (intent.getStringExtra("ITEM").equals("Chicago Deluxe Pizza")) chicagoDeluxeSelected();
+        if (intent.getStringExtra("ITEM").equals("Chicago Meatzza Pizza")) chicagoMeatzzaSelected();
     }
 
     /**
@@ -82,8 +85,7 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         updatePriceOutput();
     }
 
-    @Override
-    public void onClick(View v) {
+    public void checkBoxListener() {
         boolean isChecked = ((CheckBox)v).isChecked();
         if (sausageCheckbox.equals(v)) addPizzaTopping(Topping.SAUSAGE, isChecked);
         if (pepperoniCheckbox.equals(v)) addPizzaTopping(Topping.PEPPERONI, isChecked);
@@ -113,7 +115,7 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // Check if spinner and cast
+
         if(parent instanceof Spinner) {
             String selectedSize = parent.getItemAtPosition(position).toString();
             if (selectedSize.equals("SMALL")) pizza.setSizeToSmall();
@@ -159,12 +161,14 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
     }
 
     private void nyBYOSelected() {
+        pizzaFactory = new NYPizza();
         pizza = pizzaFactory.createBuildYourOwn();
         pizzaCrust.setText(R.string.handTossed);
         pizzaImage.setImageResource(R.drawable.ny_byo);
         buildYourOwnSelected();
     }
     private void chicagoBYOSelected() {
+        pizzaFactory = new ChicagoPizza();
         pizza = pizzaFactory.createBuildYourOwn();
         pizzaCrust.setText(R.string.pan);
         pizzaImage.setImageResource(R.drawable.chicago_default);
@@ -172,73 +176,85 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
     }
 
     private void nyBBQSelected() {
+        pizzaFactory = new NYPizza();
         pizza = pizzaFactory.createBBQChicken();
         pizzaCrust.setText(R.string.thin);
         pizzaImage.setImageResource(R.drawable.ny_bbq);
         presetSelected();
         bbqPreset();
+
     }
 
     private void nyDeluxeSelected() {
+        pizzaFactory = new NYPizza();
         pizza = pizzaFactory.createDeluxe();
         pizzaCrust.setText(R.string.brooklyn);
         pizzaImage.setImageResource(R.drawable.ny_deluxe);
         presetSelected();
         deluxePreset();
+
     }
 
     private void nyMeatzzaSelected() {
+        pizzaFactory = new NYPizza();
         pizza = pizzaFactory.createMeatzza();
         pizzaCrust.setText(R.string.handTossed);
         pizzaImage.setImageResource(R.drawable.ny_meatzza);
         presetSelected();
         meatzzaPreset();
+
     }
 
     private void chicagoBBQSelected() {
+        pizzaFactory = new ChicagoPizza();
         pizza = pizzaFactory.createBBQChicken();
         pizzaCrust.setText(R.string.pan);
         pizzaImage.setImageResource(R.drawable.chicago_bbq);
         presetSelected();
         bbqPreset();
+
     }
 
     private void chicagoDeluxeSelected() {
+        pizzaFactory = new ChicagoPizza();
         pizza = pizzaFactory.createDeluxe();
         pizzaCrust.setText(R.string.deepDish);
         pizzaImage.setImageResource(R.drawable.chicago_deluxe);
         presetSelected();
         deluxePreset();
+
     }
 
     private void chicagoMeatzzaSelected() {
+        pizzaFactory = new ChicagoPizza();
         pizza = pizzaFactory.createMeatzza();
         pizzaCrust.setText(R.string.stuffed);
         pizzaImage.setImageResource(R.drawable.chicago_meatzza);
         presetSelected();
         meatzzaPreset();
+
     }
 
     private void bbqPreset() {
-        bbqChickenCheckbox.setSelected(true);
-        greenPepperCheckbox.setSelected(true);
-        provoloneCheckbox.setSelected(true);
-        cheddarCheckbox.setSelected(true);
+        bbqChickenCheckbox.setChecked(true);
+        greenPepperCheckbox.setChecked(true);
+        provoloneCheckbox.setChecked(true);
+        cheddarCheckbox.setChecked(true);
     }
 
     private void deluxePreset() {
-        sausageCheckbox.setSelected(true);
-        pepperoniCheckbox.setSelected(true);
-        greenPepperCheckbox.setSelected(true);
-        onionCheckbox.setSelected(true);
-        mushroomCheckbox.setSelected(true);
+        sausageCheckbox.setChecked(true);
+        pepperoniCheckbox.setChecked(true);
+        greenPepperCheckbox.setChecked(true);
+        onionCheckbox.setChecked(true);
+        mushroomCheckbox.setChecked(true);
     }
 
     private void meatzzaPreset() {
-        sausageCheckbox.setSelected(true);
-        pepperoniCheckbox.setSelected(true);
-        beefCheckbox.setSelected(true);
-        hamCheckbox.setSelected(true);
+        sausageCheckbox.setChecked(true);
+        pepperoniCheckbox.setChecked(true);
+        beefCheckbox.setChecked(true);
+        hamCheckbox.setChecked(true);
     }
 
     /**
@@ -259,6 +275,7 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         spinachCheckbox.setClickable(false);
         baconCheckbox.setClickable(false);
         hamCheckbox.setClickable(false);
+        setCheckedFalse();
     }
 
     /**
@@ -279,6 +296,26 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         spinachCheckbox.setClickable(true);
         baconCheckbox.setClickable(true);
         hamCheckbox.setClickable(true);
+        setCheckedFalse();
+    }
+    /**
+     * Private helper method deselects all check boxes.
+     */
+    private void setCheckedFalse() {
+        sausageCheckbox.setChecked(false);
+        pepperoniCheckbox.setChecked(false);
+        greenPepperCheckbox.setChecked(false);
+        onionCheckbox.setChecked(false);
+        mushroomCheckbox.setChecked(false);
+        bbqChickenCheckbox.setChecked(false);
+        provoloneCheckbox.setChecked(false);
+        cheddarCheckbox.setChecked(false);
+        beefCheckbox.setChecked(false);
+        pineappleCheckbox.setChecked(false);
+        blackOlivesCheckbox.setChecked(false);
+        spinachCheckbox.setChecked(false);
+        baconCheckbox.setChecked(false);
+        hamCheckbox.setChecked(false);
     }
 
     /**
@@ -293,12 +330,12 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
      * Private helper method that assigns all the references to all android components from view.
      */
     private void assignReferences() {
-        //FILL ALL ITEM IDS HERE
-        pizzaPrice = (TextView) findViewById(R.id.pizza_price_textview);
+        pizzaPrice = (EditText) findViewById(R.id.pizza_price_textview);
         addPizzaToOrderButton = (Button) findViewById(R.id.place_order_button);
         selectedPizzaType = (TextView) findViewById(R.id.pizza_order_textview);
         pizzaCrust = (TextView) findViewById(R.id.pizza_crust_textview);
         pizzaSizeSpinner = (Spinner) findViewById(R.id.size_picker_spinner);
+
         sausageCheckbox = (CheckBox) findViewById(R.id.sausage_topping_checkbox);
         pepperoniCheckbox = (CheckBox) findViewById(R.id.pepperoni_topping_checkbox);
         greenPepperCheckbox = (CheckBox) findViewById(R.id.green_pepper_topping_checkbox);
@@ -313,6 +350,7 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         spinachCheckbox = (CheckBox) findViewById(R.id.spinach_topping_checkbox);
         baconCheckbox = (CheckBox) findViewById(R.id.bacon_topping_checkbox);
         hamCheckbox = (CheckBox) findViewById(R.id.ham_topping_checkbox);
+
         pizzaImage = (ImageView) findViewById(R.id.pizza_order_imageview);
     }
 
