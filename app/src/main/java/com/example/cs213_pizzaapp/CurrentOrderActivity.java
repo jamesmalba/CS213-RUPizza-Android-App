@@ -32,6 +32,10 @@ public class CurrentOrderActivity extends AppCompatActivity {
     public static final double SALES_TAX = 0.06625;
     public static final double SALES_TAX_MULTIPLIER = 1.06625;
 
+    /**
+     * Creates the view and sets all the content and settings of the current order view to the proper fields
+     * @param savedInstanceState instance state of the view
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +60,9 @@ public class CurrentOrderActivity extends AppCompatActivity {
         removeSelectedPizza = findViewById(R.id.current_removesel_button);
     }
 
+    /**
+     * Fills in appropriate data to be presented to the user. Also sets up proper listeners for all elements of the view
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -76,7 +83,9 @@ public class CurrentOrderActivity extends AppCompatActivity {
         this.calculatePrices();
     }
 
-
+    /**
+     * Adds the current order to the store orders, pushes toast messages and sets up new intent on the placing of an order
+     */
     public void placeOrder() {
         Order addOrder = currentOrder;
         addOrder.addToStoreOrders(currentOrder.orderTotalPrice());
@@ -88,12 +97,18 @@ public class CurrentOrderActivity extends AppCompatActivity {
         startActivity(gotoMainActivity);
     }
 
+    /**
+     * Removes order from listview and updates all relevant information in view
+     */
     public void clearOrder() {
         currentOrder.getOrder().clear();
         this.updateInfo();
         this.calculatePrices();
     }
 
+    /**
+     * Removes selected pizza and updates all relevant information in view
+     */
     public void removePizza() {
         currentOrder.remove(this.currentlySelectedPizza);
         this.updateInfo();

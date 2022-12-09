@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 /**
- *
+ * MainActivity creates the main menu and launches other activities for users to use
  * @author Alexis Wilson, James Alba
  */
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
     protected static StoreOrder storeOrders = new StoreOrder();
     protected static Order totalOrder = new Order();
 
+    /**
+     * Instantiates all buttons and creates listeners for all buttons of the main activity
+     * @param savedInstanceState the passed in saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +42,18 @@ public class MainActivity extends AppCompatActivity {
         orderPizzaButton = findViewById(R.id.order_pizza_button);
         currentOrderButton = findViewById(R.id.MainCurrentOrderButton);
         storeOrdersButton = findViewById(R.id.MainStoreOrderButton);
-
-
         // Add on click listener for order donut button
         orderPizzaButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 launchOrderPizzaRecycleView(v);
             }
         });
-
         // Add on click listener for current order button
         currentOrderButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 launchCurrentOrder();
             }
         });
-
         // Add on click listener for store orders button
         storeOrdersButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
      * @param view current view of the image button
      */
     public void launchOrderPizzaRecycleView(View view) {
-        Intent openOrderPizza = new Intent(MainActivity.this, OrderPizzaRecycleViewActivity.class);
+        Intent openOrderPizza = new Intent(MainActivity.this, OrderPizzaRecycleViewActivity
+                .class);
         startActivity(openOrderPizza);
     }
 

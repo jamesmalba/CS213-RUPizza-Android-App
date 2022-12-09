@@ -20,15 +20,7 @@ import java.util.ArrayList;
 
 /**
  * This is an Adapter class to be used to instantiate an adapter for the RecyclerView.
- * Must extend RecyclerView.Adapter, which will enforce you to implement 3 methods:
- *      1. onCreateViewHolder, 2. onBindViewHolder, and 3. getItemCount
- *
- * You must use the data type <thisClassName.yourHolderName>, in this example
- * <ItemAdapter.ItemHolder>. This will enforce you to define a constructor for the
- * ItemAdapter and an inner class ItemsHolder (a static class)
- * The ItemsHolder class must extend RecyclerView.ViewHolder. In the constructor of this class,
- * you do something similar to the onCreate() method in an Activity.
- * @author Lily Chang
+ * @author Alexis Wilson, James Alba
  */
 class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>{
     private Context context; //need the context to inflate the layout

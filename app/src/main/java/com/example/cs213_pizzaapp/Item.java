@@ -3,8 +3,7 @@ package com.example.cs213_pizzaapp;
 import java.io.Serializable;
 
 /**
- * This class defines the data structure of an item to be displayed for the RecyclerView as used in
- * Professor Chang's example.
+ * This class defines the data structure of an item to be displayed for the RecyclerView.
  * @author Alexis Wilson, James Alba
  */
 public class Item implements Serializable {
