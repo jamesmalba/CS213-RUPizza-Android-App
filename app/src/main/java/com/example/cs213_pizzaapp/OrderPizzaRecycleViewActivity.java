@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/**
+ * OrderPizzaRecycleViewActivity contains all methods needed to use and maintain the recycle view
+ * @author Alexis Wilson, James Alba
+ */
 public class OrderPizzaRecycleViewActivity extends AppCompatActivity {
 
     private ArrayList<Item> items = new ArrayList<>();
@@ -30,7 +34,6 @@ public class OrderPizzaRecycleViewActivity extends AppCompatActivity {
         setupMenuItems();
         ItemsAdapter adapter = new ItemsAdapter(this, items); //create the adapter
         rcview.setAdapter(adapter);
-
         rcview.setLayoutManager(new LinearLayoutManager(this));
     }
 

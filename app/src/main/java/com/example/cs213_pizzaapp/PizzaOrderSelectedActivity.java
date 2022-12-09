@@ -20,7 +20,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- *
+ *  An activity
  * @author Alexis Wilson, James Alba
  */
 public class PizzaOrderSelectedActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -38,17 +38,18 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
     public static final String[] PIZZA_SIZE_SPINNER_VALUES = new String[]{"SMALL", "MEDIUM", "LARGE"};
     private ArrayList<String> toppingList = new ArrayList<>();
 
+    /**
+     * Creates view and instantiates appropriate variables and elements. Sets adapter for spinner to
+     * choose a pizza and creates intents
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_order_pizza);
         assignReferences();
-
-
         Intent intent = getIntent();
         pizzaSizeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, PIZZA_SIZE_SPINNER_VALUES));
-
         selectedPizzaType.setText(intent.getStringExtra("ITEM"));
         if (intent.getStringExtra("ITEM").equals("NY Build Your Own Pizza"))nyBYOSelected();
         if (intent.getStringExtra("ITEM").equals("NY BBQ Pizza")) nyBBQSelected();
@@ -75,16 +76,17 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
                 if (selectedSize.equals("LARGE")) pizza.setSizeToLarge();
                 updatePriceOutput();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
         addPizzaToOrderButton.setOnClickListener(this::addToOrder);
         updatePriceOutput();
     }
 
+    /**
+     * Listens to choices of toppings and adds a topping if selected by user to pizza
+     */
     public void checkBoxListener() {
         boolean isChecked = ((CheckBox)v).isChecked();
         if (sausageCheckbox.equals(v)) addPizzaTopping(Topping.SAUSAGE, isChecked);
@@ -103,8 +105,6 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         if (hamCheckbox.equals(v)) addPizzaTopping(Topping.HAM, isChecked);
         updatePriceOutput();
     }
-
-
 
     /**
      * onItemSelected handler for all of the addin spinners.
@@ -136,7 +136,6 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
 
     /**
      * Adds the current Coffee order to the current order. Called by the "Add to Order" button
-     *
      * @param v the view that calls this handler
      */
     public void addToOrder(View v) {
@@ -324,7 +323,6 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
     public void updatePriceOutput() {
         pizzaPrice.setText(String.format("%.2f", pizza.price()));
     }
-
 
     /**
      * Private helper method that assigns all the references to all android components from view.
