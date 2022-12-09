@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button currentOrderButton, storeOrdersButton, orderPizzaButton;
 
-    private int uniqueOrderNumber = 1;
+    private static int uniqueOrderNumber = 1;
     protected static StoreOrder storeOrders = new StoreOrder();
     protected static Order totalOrder = new Order();
 
@@ -87,5 +87,20 @@ public class MainActivity extends AppCompatActivity {
         startActivity(openStoreOrders);
     }
 
+    /**
+     * This is a helper function that returns an order number to be used when called.
+     * @return Integer representing a unique order number.
+     */
+    public static int getOrderNumber() {
+        return uniqueOrderNumber;
+    }
+
+    /**
+     * This is a helper function that increases the order number in order to maintain uniqueness. This is used when an
+     * order is added to the store orders and a new order number is needed.
+     */
+    public static void addOrderNumber() {
+        uniqueOrderNumber++;
+    }
 
 }

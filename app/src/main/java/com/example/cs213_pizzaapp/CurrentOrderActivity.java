@@ -78,7 +78,9 @@ public class CurrentOrderActivity extends AppCompatActivity {
 
 
     public void placeOrder() {
-        currentOrder.addToStoreOrders(currentOrder.orderTotalPrice());
+        Order addOrder = currentOrder;
+        addOrder.addToStoreOrders(currentOrder.orderTotalPrice());
+        currentOrder = new Order();
 
         Toast.makeText(getBaseContext(), R.string.order_successfully_added, Toast.LENGTH_SHORT).show();
 

@@ -13,13 +13,17 @@ public class Order implements Customizable {
     private ArrayList<Pizza> orderListView;
 
     private int orderNumber;
+    public static int uniqueOrderNumber = 0;
 
     private static Order instance;
 
     /**
      * Constructor to create a pizza object containing an observable list for all the pizzas.
      */
-    public Order() { orderListView = new ArrayList<>();}
+    public Order() {
+        orderListView = new ArrayList<>();
+        orderNumber = Order.uniqueOrderNumber++;
+    }
 
     /**
      * Adds a pizza to the order list.
@@ -69,14 +73,6 @@ public class Order implements Customizable {
     }
 
     /**
-     * A setter method for the order number for the specific order object.
-     * @param orderNumber an integer representing the order number that is to be set for the specific object.
-     */
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    /**
      * A getter method for the order number for the specific order object.
      * @return Integer representing the order number.
      */
@@ -115,4 +111,11 @@ public class Order implements Customizable {
         instance = null;
     }
 
+    /**
+     * This is a helper function that increases the order number in order to maintain uniqueness. This is used when an
+     * order is added to the store orders and a new order number is needed.
+     */
+    public void addOrderNumber() {
+        orderNumber++;
+    }
 }

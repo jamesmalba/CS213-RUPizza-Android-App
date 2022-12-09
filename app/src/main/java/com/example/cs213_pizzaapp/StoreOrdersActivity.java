@@ -52,13 +52,13 @@ public class StoreOrdersActivity extends AppCompatActivity {
         storeOrdersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Find which order it is from string
+
                 String selectedItemString = (String) storeOrdersListView.getItemAtPosition(position);
                 for(Order order : StoreOrder.getInstance().getStoreOrderList()) {
-                    // we just want to compare the first item in the new line split, since that will be the order string
+
                     String[] componentsOfOrder = order.toString().split("\n");
                     if(order.toString().equals(componentsOfOrder[0])) {
-                        // This is the same order!
+
                         currentSelectedOrder = order;
                         removeSelectedPizzaOrder.setEnabled(true);
                         return;
@@ -67,7 +67,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
             }
         });
 
-        // Remove selected order listener
+
         removeSelectedPizzaOrder.setOnClickListener(v -> {
             this.removeSelectedOrder();
         });
@@ -75,8 +75,6 @@ public class StoreOrdersActivity extends AppCompatActivity {
 
 
     private void removeSelectedOrder() {
-        System.out.println(this.currentSelectedOrder);
-        // Remove order, reset currently selected order, reset order ids, and rebuild order list
         StoreOrder.getInstance().remove(currentSelectedOrder);
         currentSelectedOrder = null;
         buildOrderList();
@@ -96,8 +94,9 @@ public class StoreOrdersActivity extends AppCompatActivity {
             for(Pizza item : order.getOrderList()) {
                 pizzas += item.toString() + "\n";
             }
-
+            pizzas += "Order Total: $" + order.orderTotalPrice() + "\n";
             parsedOrderContentItems.add(orderTitle + pizzas);
+
         }
 
         storeOrdersListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, parsedOrderContentItems));
