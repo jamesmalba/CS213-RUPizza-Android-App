@@ -63,4 +63,8 @@
     <string name="current_removesel">Remove Selected Pizza</string>
     <string name="current_clear_order_button">Clear Order</string>
     <string name="removed_order_success">Successfully removed order.</string>
+    <string name="place_order_question">Do you want to place order?</string>
+    <string name="place">Place Order</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

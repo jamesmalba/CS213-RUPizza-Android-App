@@ -236,9 +236,9 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         pizza = pizzaFactory.createBBQChicken();
         pizzaCrust.setText(R.string.thin);
         pizzaImage.setImageResource(R.drawable.ny_bbq);
-        presetSelected();
+        setCheckedFalse();
         bbqPreset();
-
+        presetSelected();
     }
 
     private void nyDeluxeSelected() {
@@ -246,6 +246,7 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         pizza = pizzaFactory.createDeluxe();
         pizzaCrust.setText(R.string.brooklyn);
         pizzaImage.setImageResource(R.drawable.ny_deluxe);
+        setCheckedFalse();
         presetSelected();
         deluxePreset();
 
@@ -256,6 +257,7 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         pizza = pizzaFactory.createMeatzza();
         pizzaCrust.setText(R.string.handTossed);
         pizzaImage.setImageResource(R.drawable.ny_meatzza);
+        setCheckedFalse();
         presetSelected();
         meatzzaPreset();
 
@@ -266,6 +268,7 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         pizza = pizzaFactory.createBBQChicken();
         pizzaCrust.setText(R.string.pan);
         pizzaImage.setImageResource(R.drawable.chicago_bbq);
+        setCheckedFalse();
         presetSelected();
         bbqPreset();
 
@@ -276,6 +279,7 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         pizza = pizzaFactory.createDeluxe();
         pizzaCrust.setText(R.string.deepDish);
         pizzaImage.setImageResource(R.drawable.chicago_deluxe);
+        setCheckedFalse();
         presetSelected();
         deluxePreset();
 
@@ -286,9 +290,9 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         pizza = pizzaFactory.createMeatzza();
         pizzaCrust.setText(R.string.stuffed);
         pizzaImage.setImageResource(R.drawable.chicago_meatzza);
+        setCheckedFalse();
         presetSelected();
         meatzzaPreset();
-
     }
 
     private void bbqPreset() {
@@ -331,7 +335,6 @@ public class PizzaOrderSelectedActivity extends AppCompatActivity implements Ada
         spinachCheckbox.setClickable(false);
         baconCheckbox.setClickable(false);
         hamCheckbox.setClickable(false);
-        setCheckedFalse();
     }
 
     /**

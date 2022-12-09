@@ -1,5 +1,6 @@
 package com.example.cs213_pizzaapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -77,7 +79,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
 
         removeSelectedPizza.setOnClickListener(v -> { this.removePizza(); });
         clearPizzaOrder.setOnClickListener(v -> { this.clearOrder(); });
-        placePizzaOrder.setOnClickListener(v -> { this.placeOrder(); });
+        placePizzaOrder.setOnClickListener(v -> { this.placeOrderPrompt(); });
 
         this.updateInfo();
         this.calculatePrices();
@@ -96,6 +98,8 @@ public class CurrentOrderActivity extends AppCompatActivity {
         Intent gotoMainActivity = new Intent(this, MainActivity.class);
         startActivity(gotoMainActivity);
     }
+
+
 
     /**
      * Removes order from listview and updates all relevant information in view
@@ -133,6 +137,21 @@ public class CurrentOrderActivity extends AppCompatActivity {
         this.removeSelectedPizza.setEnabled(false);
 
         placePizzaOrder.setEnabled(!this.currentOrder.getOrderList().isEmpty());
+    }
+
+    public void placeOrderPrompt() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(CurrentOrderActivity.this);
+        builder.setMessage(R.string.place_order_question);
+        builder.setTitle(R.string.place);
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.yes, (DialogInterface.OnClickListener) (dialog, which) -> {
+            placeOrder();
+        });
+        builder.setNegativeButton(R.string.no, (DialogInterface.OnClickListener) (dialog, which) -> {
+            dialog.cancel();
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 }
